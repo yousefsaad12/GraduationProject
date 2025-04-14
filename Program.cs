@@ -2,7 +2,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSqlServer()
+builder.Services.AddDbContext<ApplicationDb>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString())
+)
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
