@@ -1,3 +1,4 @@
+using GraduationProject.ModelsConfiguration;
 
 namespace GraduationProject.Data
 {
@@ -11,6 +12,7 @@ namespace GraduationProject.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new DoctorConfigurations());
             base.OnModelCreating(builder);
         }
     }
