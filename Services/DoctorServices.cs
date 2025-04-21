@@ -41,6 +41,11 @@ namespace GraduationProject.Services
 
         }
 
+        public async Task<IReadOnlyList<DoctorResponse>> GetAllDoctors()
+        {
+            return await _context.Doctors.Select(d => d.DoctorToDoctorResponseMapper()).ToListAsync();
+        }
+
         public Task<bool> IsEmailExist(string email)
         {
             return _context.Doctors.AnyAsync(d => d.Email == email);

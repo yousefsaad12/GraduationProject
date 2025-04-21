@@ -15,5 +15,18 @@ namespace GraduationProject.Mapping
                 Location = createDoctorRequest.Location,
             };
         }
+
+        public static DoctorResponse DoctorToDoctorResponseMapper(this Doctor doctor)
+        {
+            return new DoctorResponse()
+            {
+                Name = doctor.Name,
+                Email = doctor.Email,
+                Country = doctor.Country,
+                PhoneNumber = doctor.PhoneNumber,
+                Specialization = doctor.Specialization,
+                Location = doctor.Location,
+            };
+        }
     }
 }
