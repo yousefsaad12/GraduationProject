@@ -20,6 +20,7 @@ namespace GraduationProject.Mapping
         {
             return new DoctorResponse()
             {
+
                 Name = doctor.Name,
                 Email = doctor.Email,
                 Country = doctor.Country,
