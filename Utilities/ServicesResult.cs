@@ -15,7 +15,7 @@ namespace GraduationProject.Utilities
         public static ServicesResult<T> Ok(T data, string? message = null)
             => new() { Success = true, Data = data, Message = message };
 
-        public static ServicesResult<T> Fail(T data, string? message = null)
-            => new() { Success = false, Data = data, Message = message };
+        public static ServicesResult<T> Fail(string error, string? message = null)
+            => new() { Success = false, Error = error, Message = message };
     }
 }
