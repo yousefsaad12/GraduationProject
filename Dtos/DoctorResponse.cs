@@ -4,7 +4,7 @@ namespace GraduationProject.Dtos
 {
     public class DoctorResponse
     {
-        public string Id { set; get; }
+        public int Id { set; get; }
         public string Name { set; get; }
         public string Specialization { set; get; }
         public string Email { set; get; }
