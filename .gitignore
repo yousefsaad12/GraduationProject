@@ -1,0 +1,48 @@
+### .NET ###
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
+.vs/
+.vscode/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results from running tests
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet Packages
+*.nupkg
+.nuget/
+NuGet.exe
+packages/
+
+# Local development cache
+.npm
+.localhistory/
+
+# Rider/ReSharper
+*.sln.iml
+*.csproj.iml
+.idea/
+
+### macOS ###
+.DS_Store
+._*
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
