@@ -1,7 +1,6 @@
 
 using GraduationProject.InterFaces;
 using GraduationProject.Mapping;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace GraduationProject.Services
 {
@@ -61,7 +60,7 @@ namespace GraduationProject.Services
 
         public async Task<Doctor> GetDoctor(int id)
         {
-            return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id).ConfigureAwait(false);
         }
 
         public async Task<bool> IsEmailExist(string email)
@@ -83,7 +82,11 @@ namespace GraduationProject.Services
 
             DoctorUpdateHelper.MapUpdate(doctor, updateDoctorRequest);
 
-            _context.Doctors.Update(doctor);
+            int result = await _context.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0 ?
+                   ServicesResult<bool>.Ok(true, "Doctor has been updated successfully.") :
+                   ServicesResult<bool>.Fail("No changes were saved.");
         }
     }
 }
