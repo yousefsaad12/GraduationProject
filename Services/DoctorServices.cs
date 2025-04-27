@@ -1,6 +1,7 @@
 
 using GraduationProject.InterFaces;
 using GraduationProject.Mapping;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace GraduationProject.Services
 {
@@ -58,6 +59,11 @@ namespace GraduationProject.Services
             return await _context.Doctors.Select(d => d.DoctorToDoctorResponseMapper()).ToListAsync().ConfigureAwait(false);
         }
 
+        public async Task<Doctor> GetDoctor(int id)
+        {
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
+        }
+
         public async Task<bool> IsEmailExist(string email)
         {
             return await _context.Doctors.AnyAsync(d => d.Email == email).ConfigureAwait(false);
@@ -65,6 +71,19 @@ namespace GraduationProject.Services
         public async Task<bool> IsIdExist(int id)
         {
             return await _context.Doctors.AnyAsync(d => d.Id == id).ConfigureAwait(false);
+        }
+
+        public async Task<ServicesResult<bool>> UpdateDoctor(CreateDoctorRequest updateDoctorRequest, int id)
+        {
+            if (updateDoctorRequest is null) return ServicesResult<bool>.Fail("Update has been failed");
+
+            Doctor doctor = await GetDoctor(id);
+
+            if (doctor is null) return ServicesResult<bool>.Fail("Doctor not found");
+
+            DoctorUpdateHelper.MapUpdate(doctor, updateDoctorRequest);
+
+            _context.Doctors.Update(doctor);
         }
     }
 }
