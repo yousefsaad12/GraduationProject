@@ -8,6 +8,8 @@
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+obj/
+bin/
 
 # Visual Studio cache/options directory
 .vs/
