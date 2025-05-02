@@ -1,4 +1,5 @@
 
+using System.Linq.Expressions;
 using GraduationProject.InterFaces;
 using GraduationProject.Mapping;
 
@@ -40,17 +41,26 @@ namespace GraduationProject.Services
 
         public async Task<ServicesResult<bool>> DeleteDoctor(int id)
         {
-            if (!await IsIdExist(id)) return ServicesResult<bool>.Fail("Id not exists.");
+            try
+            {
 
-            Doctor doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id).ConfigureAwait(false);
+                if (!await IsIdExist(id)) return ServicesResult<bool>.Fail("Id not exists.");
 
-            _context.Doctors.Remove(doctor);
+                Doctor doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id).ConfigureAwait(false);
 
-            int result = await _context.SaveChangesAsync().ConfigureAwait(false);
+                _context.Doctors.Remove(doctor);
 
-            return result > 0 ?
-                   ServicesResult<bool>.Ok(true, "Doctor has been deleted successfully.") :
-                   ServicesResult<bool>.Fail("No changes were saved.");
+                int result = await _context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0 ?
+                    ServicesResult<bool>.Ok(true, "Doctor has been deleted successfully.") :
+                    ServicesResult<bool>.Fail("No changes were saved.");
+
+            }
+            catch (Exception ex)
+            {
+                return ServicesResult<bool>.Fail(ex.Message);
+            }
         }
 
         public async Task<IReadOnlyList<DoctorResponse>> GetAllDoctors()
@@ -74,19 +84,27 @@ namespace GraduationProject.Services
 
         public async Task<ServicesResult<bool>> UpdateDoctor(CreateDoctorRequest updateDoctorRequest, int id)
         {
-            if (updateDoctorRequest is null) return ServicesResult<bool>.Fail("Update has been failed");
+            try
+            {
 
-            Doctor doctor = await GetDoctor(id);
+                if (updateDoctorRequest is null) return ServicesResult<bool>.Fail("Update has been failed");
 
-            if (doctor is null) return ServicesResult<bool>.Fail("Doctor not found");
+                Doctor doctor = await GetDoctor(id);
 
-            DoctorUpdateHelper.MapUpdate(doctor, updateDoctorRequest);
+                if (doctor is null) return ServicesResult<bool>.Fail("Doctor not found");
 
-            int result = await _context.SaveChangesAsync().ConfigureAwait(false);
+                DoctorUpdateHelper.MapUpdate(doctor, updateDoctorRequest);
 
-            return result > 0 ?
-                   ServicesResult<bool>.Ok(true, "Doctor has been updated successfully.") :
-                   ServicesResult<bool>.Fail("No changes were saved.");
+                int result = await _context.SaveChangesAsync().ConfigureAwait(false);
+
+                return result > 0 ?
+                    ServicesResult<bool>.Ok(true, "Doctor has been updated successfully.") :
+                    ServicesResult<bool>.Fail("No changes were saved.");
+            }
+            catch (Exception ex)
+            {
+                return ServicesResult<bool>.Fail(ex.Message);
+            }
         }
     }
 }
