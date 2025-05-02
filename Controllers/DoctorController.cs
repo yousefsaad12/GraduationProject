@@ -17,12 +17,26 @@ namespace GraduationProject.Controllers
         }
 
         [HttpGet]
-        [Route("/GetAllDoctor")]
+        [Route("GetAllDoctor")]
         public async Task<IActionResult> GetAllDoctor()
         {
             IReadOnlyList<DoctorResponse> doctorResponses = await _doctorInterface.GetAllDoctors().ConfigureAwait(false);
 
-            if (doctorResponses is null) return ok
+            return Ok(doctorResponses);
+        }
+
+        [HttpPost]
+        [Route("AddDoctor")]
+        public async Task<IActionResult> AddDoctor([FromBody] CreateDoctorRequest createDoctorRequest)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            ServicesResult<bool> result = await _doctorInterface.AddDoctor(createDoctorRequest).ConfigureAwait(false);
+
+            if (result.Success) return Created(string.Empty, "Doctor successfully added.");
+
+            return BadRequest(result);
+
         }
     }
 }
