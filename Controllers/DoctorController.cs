@@ -38,5 +38,18 @@ namespace GraduationProject.Controllers
             return BadRequest(result);
 
         }
+
+        [HttpDelete]
+        [Route("DeleteDoctor")]
+        public async Task<IActionResult> AddDoctor([FromQuery] int id)
+        {
+
+            ServicesResult<bool> result = await _doctorInterface.DeleteDoctor(id).ConfigureAwait(false);
+
+            if (result.Success) return NoContent();
+
+            return NotFound(result);
+
+        }
     }
 }
