@@ -48,7 +48,21 @@ namespace GraduationProject.Controllers
 
             if (result.Success) return NoContent();
 
-            return NotFound(result);
+            return NotFound("Doctor not found");
+
+        }
+
+        [HttpPut]
+        [Route("UpdateDoctor")]
+        public async Task<IActionResult> UpdateDoctor([FromQuery] int id, CreateDoctorRequest updateDoctorRequest)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            ServicesResult<bool> result = await _doctorInterface.UpdateDoctor(updateDoctorRequest, id).ConfigureAwait(false);
+
+            if (result.Success) return Ok("Doctor successfully updated");
+
+            return
 
         }
     }
