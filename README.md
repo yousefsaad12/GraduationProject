@@ -337,7 +337,3 @@ GraduationProject/
 This project is for educational purposes. You may use, modify, and distribute it as needed.
 
 ---
-
-**Enjoy building with ASP.NET Core!**
-
-If you need more details or want to add deployment instructions, Docker, or CI/CD, let me know! 
