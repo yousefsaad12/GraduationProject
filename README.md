@@ -17,6 +17,7 @@ A full-stack ASP.NET Core Web API project for managing doctors and users, includ
 - [API Endpoints](#api-endpoints)
   - [Doctor Endpoints](#doctor-endpoints)
   - [User Endpoints](#user-endpoints)
+- [API Endpoints in Depth](#api-endpoints-in-depth)
 - [Authentication & Authorization](#authentication--authorization)
 - [Unit Testing](#unit-testing)
 - [Extending the Project](#extending-the-project)
@@ -144,6 +145,148 @@ GraduationProject/
 | POST   | `/api/User/register`       | Register a new user        | No           |
 | POST   | `/api/User/login`          | Login and get JWT token    | No           |
 | DELETE | `/api/User/delete-User`    | Delete user by email       | Yes          |
+
+## API Endpoints in Depth
+
+### Doctor Endpoints
+
+#### GET `/api/Doctor/GetAllDoctor`
+- **Description:** Retrieves a list of all doctors.
+- **Request Body:** None.
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:** Array of doctor objects.
+    ```json
+    [
+      {
+        "id": 1,
+        "name": "Dr. John Doe",
+        "specialization": "Cardiology",
+        "email": "john.doe@example.com",
+        "phoneNumber": "1234567890",
+        "country": "USA",
+        "location": "New York"
+      },
+      ...
+    ]
+    ```
+
+#### POST `/api/Doctor/AddDoctor`
+- **Description:** Adds a new doctor.
+- **Request Body:**
+  ```json
+  {
+    "name": "Dr. John Doe",
+    "specialization": "Cardiology",
+    "email": "john.doe@example.com",
+    "phoneNumber": "1234567890",
+    "country": "USA",
+    "location": "New York"
+  }
+  ```
+- **Response:**
+  - **Status:** 201 Created
+  - **Body:**
+    ```json
+    {
+      "success": true,
+      "message": "Doctor added successfully."
+    }
+    ```
+
+#### PUT `/api/Doctor/UpdateDoctor`
+- **Description:** Updates an existing doctor by ID.
+- **Request Body:**
+  ```json
+  {
+    "id": 1,
+    "name": "Dr. John Doe Updated",
+    "specialization": "Neurology",
+    "email": "john.doe.updated@example.com",
+    "phoneNumber": "9876543210",
+    "country": "Canada",
+    "location": "Toronto"
+  }
+  ```
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "success": true,
+      "message": "Doctor updated successfully."
+    }
+    ```
+
+#### DELETE `/api/Doctor/DeleteDoctor`
+- **Description:** Deletes a doctor by ID.
+- **Request Body:** None.
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "success": true,
+      "message": "Doctor has been deleted successfully."
+    }
+    ```
+
+### User Endpoints
+
+#### POST `/api/User/register`
+- **Description:** Registers a new user.
+- **Request Body:**
+  ```json
+  {
+    "userName": "testuser",
+    "email": "test@example.com",
+    "password": "Test123!"
+  }
+  ```
+- **Response:**
+  - **Status:** 201 Created
+  - **Body:**
+    ```json
+    {
+      "succeeded": true,
+      "errors": []
+    }
+    ```
+
+#### POST `/api/User/login`
+- **Description:** Logs in a user and returns a JWT token.
+- **Request Body:**
+  ```json
+  {
+    "email": "test@example.com",
+    "passWord": "Test123!"
+  }
+  ```
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "user": {
+        "userName": "testuser",
+        "email": "test@example.com"
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    }
+    ```
+
+#### DELETE `/api/User/delete-User`
+- **Description:** Deletes a user by email.
+- **Request Body:** None.
+- **Response:**
+  - **Status:** 200 OK
+  - **Body:**
+    ```json
+    {
+      "success": true,
+      "data": "test@example.com"
+    }
+    ```
 
 ---
 
