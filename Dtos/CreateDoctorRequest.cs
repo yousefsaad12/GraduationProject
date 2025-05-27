@@ -8,24 +8,24 @@ namespace GraduationProject.Dtos
     {
         [Required]
         [StringLength(100, MinimumLength = 3)]
-        public string Name { set; get; }
+        public string name { set; get; }
 
         [Required]
         [StringLength(100, MinimumLength = 3)]
-        public string Specialization { set; get; }
+        public string specialization { set; get; }
 
         [Required]
         [StringLength(150)]
         [EmailAddress]
-        public string Email { set; get; }
+        public string email { set; get; }
 
         [StringLength(20)]
-        public string? PhoneNumber { set; get; }
+        public string? phoneNumber { set; get; }
 
         [StringLength(50)]
-        public string? Country { set; get; }
+        public string? country { set; get; }
 
         [StringLength(200)]
-        public string? Location { set; get; }
+        public string? location { set; get; }
     }
 }

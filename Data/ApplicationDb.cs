@@ -1,4 +1,4 @@
-using GraduationProject.ModelsConfiguration;
+
 
 namespace GraduationProject.Data
 {
@@ -7,13 +7,19 @@ namespace GraduationProject.Data
         public ApplicationDb(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<User> Users;
-        public DbSet<Doctor> Doctors;
+        public DbSet<User> Users { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new DoctorConfigurations());
+
             base.OnModelCreating(builder);
+
+            builder.Entity<Doctor>(entity =>
+            {
+
+                entity.ToTable("Doctors");
+            });
         }
     }
 }

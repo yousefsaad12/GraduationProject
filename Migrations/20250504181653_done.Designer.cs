@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Migrations
 {
     [DbContext(typeof(ApplicationDb))]
-    [Migration("20250419234530_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250504181653_done")]
+    partial class done
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,6 @@ namespace GraduationProject.Migrations
 
                     b.Property<string>("Country")
                         .HasMaxLength(50)
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Email")
@@ -45,13 +44,11 @@ namespace GraduationProject.Migrations
 
                     b.Property<string>("Location")
                         .HasMaxLength(200)
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .IsUnicode(true)
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("PhoneNumber")
@@ -64,9 +61,6 @@ namespace GraduationProject.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("Doctors", (string)null);
                 });

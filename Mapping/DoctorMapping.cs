@@ -7,12 +7,12 @@ namespace GraduationProject.Mapping
         {
             return new Doctor()
             {
-                Name = createDoctorRequest.Name,
-                Email = createDoctorRequest.Email,
-                Country = createDoctorRequest.Country,
-                PhoneNumber = createDoctorRequest.PhoneNumber,
-                Specialization = createDoctorRequest.Specialization,
-                Location = createDoctorRequest.Location,
+                Name = createDoctorRequest.name,
+                Specialization = createDoctorRequest.specialization,
+                Email = createDoctorRequest.email,
+                PhoneNumber = createDoctorRequest.phoneNumber,
+                Country = createDoctorRequest.country,
+                Location = createDoctorRequest.location,
             };
         }
 

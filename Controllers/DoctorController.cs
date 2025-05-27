@@ -31,9 +31,11 @@ namespace GraduationProject.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            if (createDoctorRequest == null) return BadRequest();
+
             ServicesResult<bool> result = await _doctorInterface.AddDoctor(createDoctorRequest).ConfigureAwait(false);
 
-            if (result.Success) return Created(string.Empty, "Doctor successfully added.");
+            if (result.Success) return Ok("Doctor successfully added.");
 
             return BadRequest(result);
 

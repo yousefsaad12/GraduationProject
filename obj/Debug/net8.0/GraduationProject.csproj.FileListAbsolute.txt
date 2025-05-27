@@ -151,3 +151,6 @@ D:\GraduationProject\obj\Debug\net8.0\refint\GraduationProject.dll
 D:\GraduationProject\obj\Debug\net8.0\GraduationProject.pdb
 D:\GraduationProject\obj\Debug\net8.0\GraduationProject.genruntimeconfig.cache
 D:\GraduationProject\obj\Debug\net8.0\ref\GraduationProject.dll
+D:\GraduationProject\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\GraduationProject\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+D:\GraduationProject\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
